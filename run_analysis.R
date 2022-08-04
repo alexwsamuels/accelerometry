@@ -47,7 +47,7 @@ names(accelerometry) <- gsub("std", "stdev",
 if(!file.exists("./tidy_accelerometry_data.Rdata")){
   file.create("./tidy_accelerometry_data.Rdata")
 }
-save(accelerometry, "./tidy_accelerometry_data.txt")
+save(accelerometry, file = "./tidy_accelerometry_data.Rdata")
 
 # From dataset in above step, create a second independent tidy data set with the
 # average of each variable for each activity and each subject
