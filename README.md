@@ -28,7 +28,7 @@ Converts activity numbers to the name of the activity (*walking, walking_upstair
 
 Changes the UCI-provided variable names into more readable alternatives using regular expressions  
 
-Creates a new file if one does not exist, then saves *accelerometry* into it  
+Creates .txt file containing *accelerometry*    
 
 ### dataset of averages
 Summarizes *accelerometry* by calculating the mean of each group, creating a new dataset: *averages*  
@@ -36,4 +36,4 @@ Summarizes *accelerometry* by calculating the mean of each group, creating a new
 - Calculates the mean for each variable individually  
 Replaces column names with the names for *accelerometry*  
 
-Creates a new file if one does not exist, then saves *averages* into it
+Creates a .txt file containing *averages*
