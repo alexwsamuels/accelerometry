@@ -3,9 +3,9 @@ Tidies the Human Activity Recognition Using Smartphones Dataset
 
 ## Files
 - *run_analysis.R* contains code to clean accelerometry data collected in UCI HAR Dataset (limited to mean and standard deviation measurements)  
-- *tidy_accelerometry_data.Rdata* contains the consolidated and cleaned dataset (the output of run_analysis.R)  
+- *tidy_accelerometry_data.txt* contains the consolidated and cleaned dataset (the output of run_analysis.R)  
 - *UCI HAR Dataset (folder)* contains original data, codebook, and other files  
-- *average_accelerometry_data.Rdata* (present after running run_analysis.R) contains average values of each variable in the UCI HAR Dataset, grouped by subject and by activity
+- *average_accelerometry_data.txt* contains average values of each variable in the UCI HAR Dataset, grouped by subject and by activity
 
 ## run_analysis methodology
 Reads in files from UCI HAR Dataset  
