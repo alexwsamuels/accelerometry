@@ -2,14 +2,38 @@
 Tidies the Human Activity Recognition Using Smartphones Dataset
 
 ## Files
-- *run_analysis.R* contains code to clean accelerometry data collected in UCI HAR Dataset (limited to mean and standard deviation measurements)
-- *tidy_accelerometry_data.Rdata* contains the consolidated and cleaned dataset (the output of run_analysis.R)
-- *UCI HAR Dataset (folder)* contains original data, codebook, and other files
+- *run_analysis.R* contains code to clean accelerometry data collected in UCI HAR Dataset (limited to mean and standard deviation measurements)  
+- *tidy_accelerometry_data.Rdata* contains the consolidated and cleaned dataset (the output of run_analysis.R)  
+- *UCI HAR Dataset (folder)* contains original data, codebook, and other files  
 - *average_accelerometry_data.Rdata* (present after running run_analysis.R) contains average values of each variable in the UCI HAR Dataset, grouped by subject and by activity
 
-## Data Collection
-The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+## run_analysis methodology
+Reads in files from UCI HAR Dataset  
+- *X_test* is the full dataset from the test group of volunteers. It contains 2947 observations of all 564 variables  
+- *X_train* is the full datasetfrom the training group of volunteers. It contains 7352 observations of all 564 variables  
+- *features* contains the variable names; **run_analysis** combines the index with the variable name to eliminate duplicates 
+- *subject_test* is the list of subjects from the test group of volunteers  
+- *subject_train* is the list of subjects from the training group of volunteers  
+- *activity_test* is the list of activities from the test group of volunteers  
+- *activity_train* is the list of activities from the training group of volunteers  
 
-The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details.
+Sets the names of the columns of *X_test* and *X_train* to be the names of the variables  
+Adds the lists of subjects and activities to *X_test* and *X_train* respectively
+Merges the two datasets into an intermediate dataset: *merged_data*  
 
-All variables are normalized and bounded within \[-1, 1\]
+Creates a new dataset, *accelerometry*, containing the subject list, activity list, origin dataset, and the measurements on mean and standard deviation for each variable    
+Groups the new dataset by subject id number and then by activity, then arranges the rows by those groups  
+
+Converts activity numbers to the name of the activity (*walking, walking_upstairs, walking_downstairs, sitting, standing,* and *laying*) by reading in *activity_labels* from the UCI HAR Dataset. (The labels are in upper case, so they are shifted to lower case)  
+
+Changes the UCI-provided variable names into more readable alternatives using regular expressions  
+
+Creates a new file if one does not exist, then saves *accelerometry* into it  
+
+### dataset of averages
+Summarizes *accelerometry* by calculating the mean of each group, creating a new dataset: *averages*  
+- Data are groubed by subject id, then activity name  
+- Calculates the mean for each variable individually  
+Replaces column names with the names for *accelerometry*  
+
+Creates a new file if one does not exist, then saves *averages* into it
